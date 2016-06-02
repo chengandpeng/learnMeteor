@@ -1,1 +1,1 @@
-# Some projects for learning Meteor
+# Learn Meteor + React
