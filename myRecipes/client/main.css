@@ -1,0 +1,25 @@
+/* CSS declarations go here */
+body {
+	background-color: #F5F5F5;
+}
+
+.content { 
+	max-width: 1140px;
+	margin: 0 auto;
+}
+
+.recipes h1 {
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.card-new-recipe {
+	width: 550px;
+	height: auto;
+	margin: auto;
+}
+
+.cardTitle-new-recipe {
+	color: #fff;
+	background-color: #009688;
+}
