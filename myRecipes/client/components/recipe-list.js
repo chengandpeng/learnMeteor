@@ -1,4 +1,5 @@
 import React from 'react';
+import { Grid, Cell } from 'react-mdl';
 import { createContainer } from 'meteor/react-meteor-data';
 import { Recipes } from '../../imports/collections/recipes';
 import RecipeView from './recipe-view';
@@ -10,15 +11,15 @@ class RecipeList extends React.Component {
 
   renderList() {
   	return this.props.recipes.map(recipe => {
-  		return <RecipeView key={recipe._id} recipe={recipe} />
+  		return <Cell col={4} key={recipe._id}><RecipeView recipe={recipe} /></Cell>
   	});
   }
 
   render() {
-    return (
-      <div>
+    return (      
+      <Grid>
       	{this.renderList()}
-      </div>
+      </Grid>
     );
   }
 }

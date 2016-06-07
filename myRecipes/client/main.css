@@ -3,7 +3,7 @@ body {
 	background-color: #F5F5F5;
 }
 
-.content { 
+.content {
 	max-width: 1140px;
 	margin: 0 auto;
 }
@@ -22,4 +22,24 @@ body {
 .cardTitle-new-recipe {
 	color: #fff;
 	background-color: #009688;
+}
+
+.card-view-recipe {
+	width: auto;
+	height: auto;
+	margin: 10px auto;
+}
+
+.cardTitle-view-recipe {
+	background-color: #3F51B5;
+	color: #fff;
+}
+
+.cardTitle-view-recipe-selected {
+	background-color: #8e44ad;
+	color: #fff;
+}
+
+.cardTitle-des {
+	color: #e5e5e5;
 }

@@ -1,8 +1,8 @@
 import React from 'react';
-import { Card, CardTitle, CardText, CardActions, Button,
-				CardMenu, IconButton, DataTable, TableHeader } from 'react-mdl';
-	
-export default class RecipeView extends React.Component {
+import { Card, CardTitle, CardText, DataTable, TableHeader,
+				CardActions, Button } from 'react-mdl';
+
+export default class MenuView extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -11,14 +11,10 @@ export default class RecipeView extends React.Component {
   	Meteor.call('recipes.setInMenu', this.props.recipe);
   }
 
-  handleDelete() {
-  	Meteor.call('recipes.remove', this.props.recipe);
-  }
-
   render() {
     return (
-	    <Card shadow={2} className="card-view-recipe">
-		    <CardTitle expand className={this.props.recipe.inMenu?'cardTitle-view-recipe-selected':'cardTitle-view-recipe'}>
+      <Card shadow={2} className="card-view-recipe">
+		    <CardTitle expand className='cardTitle-view-recipe-selected'>
 		    	<div>
 			    	<h4>{this.props.recipe.name}</h4>
 			    	<br />
@@ -33,12 +29,9 @@ export default class RecipeView extends React.Component {
 		    </CardText>
 		    <CardActions border>
 		        <Button colored onClick={this.handleClick.bind(this)} >
-		        	{this.props.recipe.inMenu?'REMOVE FROM MENU':'ADD TO MENU'}
+		        	REMOVE FROM MENU
 		        </Button>
 		    </CardActions>
-		    <CardMenu>
-		    	<IconButton name='delete' onClick={this.handleDelete.bind(this)} style={{color: '#fff'}}/>
-		    </CardMenu>
 			</Card>
     );
   }

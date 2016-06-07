@@ -8,7 +8,7 @@ export default class Footer extends React.Component {
 
   render() {
     return (
-    	<FooterMDL size="mini">
+    	<FooterMDL size="mini" style={{zIndex: '999'}} >
     		<FooterSection type='left' logo='Welcome to my site'>
     			<FooterLinkList>
     				<a href="#">Help</a>

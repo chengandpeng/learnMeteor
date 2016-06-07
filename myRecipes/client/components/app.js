@@ -17,7 +17,7 @@ export default class App extends React.Component {
     		<Layout fixedHeader>
     			<Header />
     			<Drawer />
-    			<Content className="content">
+    			<Content className='content'>
     				{this.props.children}
     			</Content>
     			<Footer />
