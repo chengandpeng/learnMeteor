@@ -1,41 +1,78 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { Button, Textfield, FABButton, Card, 
 				CardTitle, CardText, CardActions, Icon,
 				IconButton } from 'react-mdl';
 import _ from 'lodash';
 
-import Ingredient from './ingredient';
-
 export default class RecipeForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {ingredientCount: 1}
+    this.state = {ingredientList: []}
+  }
+
+  componentDidMount() {
+    this.setState({
+      ingredientList: [{'display': true}]
+    });
   }
 
   renderIngredient() {
-  	const ingredientList = [];
-  	_.times(this.state.ingredientCount, (index) => {
-  			ingredientList.push(<Ingredient index={index} handleDelete={this.handleDelete.bind(this)}/>);
-  		});
-  	return ingredientList;
-
+  	return this.state.ingredientList.map((ingredient, index) => {
+      return (
+        <div style={{display: this.state.ingredientList[index].display}}  key={index}>
+          <Textfield label="Name" floatingLabel ref={`ingredientName${index}`} style={{width: '150px'}} />
+          <Textfield label="Amount" floatingLabel ref={`ingredientAmount${index}`} style={{width: '150px'}} />
+          <IconButton name='delete' onClick={this.handleDelete.bind(this, index)} />
+        </div>
+      );
+    });
   }
 
- 	handleDelete() {
+ 	handleDelete(index) {
+    let list = this.state.ingredientList;
+    list[index].display = 'none';
  		this.setState({
- 			ingredientCount: this.state.ingredientCount-1 
+ 			ingredientList: list
  		});
  	}
 
   handleClick() {
-  	this.setState({
-  		ingredientCount: this.state.ingredientCount+1
-  	});
+    let list = this.state.ingredientList;
+    list.push({'display':true});
+    this.setState({
+      ingredientList: list
+    });
   }
 
   handleSubmit() {
+    let name = this.refs.recipeName.refs.input.value;
+    let description = this.refs.description.refs.input.value;
 
+    if(!name) {
+      alert('input name');
+      return;
+    }
+
+    let list = [];
+    this.state.ingredientList.forEach( (value,index) => {
+      if(value.display == true) {
+        let refIngName = `ingredientName${index}`;
+        let refIngAmount = `ingredientAmount${index}`;
+        list.push({'name': this.refs[refIngName].refs.input.value, 'amount': this.refs[refIngAmount].refs.input.value});
+      }
+    });
+
+    Meteor.call('recipes.insert', name, description, list, (error) => {
+      this.refs.recipeName.refs.input.value = '';
+      this.refs.description.refs.input.value = '';
+      this.setState({
+        ingredientList: [{'display': true}]
+      });
+      this.refs.ingredientName0.refs.input.value = '';
+      this.refs.ingredientAmount0.refs.input.value= '';
+    });
   }
 
   render() {
@@ -45,17 +82,13 @@ export default class RecipeForm extends React.Component {
       	<Card shadow={2} className='card-new-recipe'>
 				    <CardTitle expand className='cardTitle-new-recipe'>Add New Recipe</CardTitle>
 				    <CardText>
-						  <Textfield label="Recipe Name" floatingLabel ref='recipe-name'
-						    style={{width: '400px'}}
-							/>
+						  <Textfield label="Recipe Name" floatingLabel ref='recipeName' />
 							<br />
-							<Textfield label="Description" floatingLabel ref='description'
-						    style={{width: '400px'}}
-							/>
+							<Textfield label="Description" floatingLabel ref='description' />
 							<br />
 							<div>
 								<span><strong>Ingredient</strong></span>
-								{ this.renderIngredient() }
+                { this.renderIngredient() }
 							</div>
 							<IconButton name='add' colored onClick={this.handleClick.bind(this)}/>
 				    </CardText>
