@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Button, Textfield, FABButton, Card, 
 				CardTitle, CardText, CardActions, Icon,
 				IconButton, CardMenu } from 'react-mdl';
-import _ from 'lodash';
+import classNames from 'classnames';
 
 export default class RecipeForm extends React.Component {
   constructor(props) {
@@ -11,7 +11,7 @@ export default class RecipeForm extends React.Component {
 
     this.state = {
       ingredientList: [],
-      formShow: false
+      formShow: false,
     }
   }
 
@@ -23,7 +23,7 @@ export default class RecipeForm extends React.Component {
 
   handleToggleForm() {
     this.setState({
-      formShow: !this.state.formShow 
+      formShow: !this.state.formShow,
     });
   }
 
@@ -89,9 +89,9 @@ export default class RecipeForm extends React.Component {
     const formShow = this.state.formShow?true:'none';
     return (
       <div>
-      	<Button raised colored 
+      	<Button raised colored className='animated rubberBand'
                 onClick={this.handleToggleForm.bind(this)} style={{marginLeft: '16px', display: buttonShow }} >New Recipe</Button>
-      	<Card shadow={2} className='card-new-recipe' style={{display: formShow }} >
+      	<Card shadow={2} className='card-new-recipe animated fadeIn' style={{display: formShow }} >
 				    <CardTitle expand className='cardTitle-new-recipe'>Add New Recipe</CardTitle>
 				    <CardText>
 						  <Textfield label="Recipe Name" floatingLabel ref='recipeName' />

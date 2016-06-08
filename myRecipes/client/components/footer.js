@@ -11,8 +11,7 @@ export default class Footer extends React.Component {
     	<FooterMDL size="mini" style={{zIndex: '999'}} >
     		<FooterSection type='left' logo='Welcome To My Recipes'>
     			<FooterLinkList>
-    				<a href="#">Help</a>
-    				<a href="#">Privacy & Terms</a>
+    				<a href="https://github.com/chengandpeng/learnMeteor/tree/master/myRecipes" target='_blank'>Github</a>
     			</FooterLinkList>
     		</FooterSection>
     	</FooterMDL>
