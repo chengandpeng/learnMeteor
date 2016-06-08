@@ -12,14 +12,14 @@ class Menu extends React.Component {
 
   renderList() {
   	return this.props.recipes.map(recipe => {
-  		return <Cell col={6} key={recipe._id}><MenuView recipe={recipe} /></Cell>
+  		return <Cell col={4} key={recipe._id}><MenuView recipe={recipe} /></Cell>
   	});
   }
 
   render() {
     return (
       <div>
-        <h2>Menu List</h2>  
+        <h2 style={{marginLeft: '16px'}} >Menu List</h2>  
     		<Grid>    
     			{this.renderList()}
     		</Grid>
@@ -31,5 +31,5 @@ class Menu extends React.Component {
 export default createContainer(() => {
 	Meteor.subscribe('recipes');
 
-	return {recipes: Recipes.find({ inMenu: true}).fetch() }
+	return {recipes: Recipes.find({ inMenu: true, ownerId: Meteor.userId()}).fetch() }
 }, Menu);

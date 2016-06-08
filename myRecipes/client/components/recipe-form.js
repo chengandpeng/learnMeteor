@@ -2,19 +2,28 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Button, Textfield, FABButton, Card, 
 				CardTitle, CardText, CardActions, Icon,
-				IconButton } from 'react-mdl';
+				IconButton, CardMenu } from 'react-mdl';
 import _ from 'lodash';
 
 export default class RecipeForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {ingredientList: []}
+    this.state = {
+      ingredientList: [],
+      formShow: false
+    }
   }
 
   componentDidMount() {
     this.setState({
       ingredientList: [{'display': true}]
+    });
+  }
+
+  handleToggleForm() {
+    this.setState({
+      formShow: !this.state.formShow 
     });
   }
 
@@ -76,10 +85,13 @@ export default class RecipeForm extends React.Component {
   }
 
   render() {
+    const buttonShow = this.state.formShow?'none':true;
+    const formShow = this.state.formShow?true:'none';
     return (
       <div>
-      	<Button raised colored>New Recipe</Button>
-      	<Card shadow={2} className='card-new-recipe'>
+      	<Button raised colored 
+                onClick={this.handleToggleForm.bind(this)} style={{marginLeft: '16px', display: buttonShow }} >New Recipe</Button>
+      	<Card shadow={2} className='card-new-recipe' style={{display: formShow }} >
 				    <CardTitle expand className='cardTitle-new-recipe'>Add New Recipe</CardTitle>
 				    <CardText>
 						  <Textfield label="Recipe Name" floatingLabel ref='recipeName' />
@@ -95,6 +107,9 @@ export default class RecipeForm extends React.Component {
 				    <CardActions border>
 				        <Button colored onClick={this.handleSubmit.bind(this)}>Submit</Button>
 				    </CardActions>
+            <CardMenu style={{color: '#fff'}}>
+                <IconButton name="clear" onClick={this.handleToggleForm.bind(this)} />
+            </CardMenu>
 				</Card>
       </div>
     );

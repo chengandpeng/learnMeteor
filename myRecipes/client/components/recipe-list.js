@@ -26,5 +26,5 @@ class RecipeList extends React.Component {
 
 export default createContainer(() => {
 	Meteor.subscribe('recipes');
-	return { recipes: Recipes.find({}).fetch() };
+	return { recipes: Recipes.find({ ownerId: Meteor.userId() }).fetch() };
 }, RecipeList);

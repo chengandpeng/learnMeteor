@@ -1,14 +1,44 @@
 import React from 'react';
+import { createContainer } from 'meteor/react-meteor-data';
+import { List, ListItem, ListItemContent, ListItemAction } from 'react-mdl'; 
+import { Recipes } from '../../imports/collections/recipes'; 
 
-
-export default class ShoppingList extends React.Component {
+class ShoppingList extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  renderList() {
+  	return this.props.recipes.map(recipe => {
+  		return recipe.ingredient.map(ing => {
+  			return (
+ 					<ListItem>
+				    <ListItemContent icon="done"><strong>{ing.name}</strong></ListItemContent>
+				    <ListItemAction>
+				    	<div>
+				    		{ing.amount}
+				    	</div>
+				    </ListItemAction>
+				  </ListItem>
+  			);
+  		});
+  	});
+  }
+
   render() {
     return (
-      <div></div>
+    	<div style={{width: '60%', margin: 'auto'}}>
+    		<h2>Shopping List</h2>
+	      <List>
+				  {this.renderList()}
+				</List>
+			</div>
     );
   }
 }
+
+export default createContainer(() => {
+	Meteor.subscribe('recipes');
+
+	return { recipes: Recipes.find({ inMenu: true , ownerId: Meteor.userId() }).fetch() }
+}, ShoppingList);

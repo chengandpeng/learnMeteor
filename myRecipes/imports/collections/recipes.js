@@ -8,6 +8,7 @@ Meteor.methods({
 			description,
 			ingredient,
 			inMenu: false,
+			ownerId:this.userId
 		});
 	},
 

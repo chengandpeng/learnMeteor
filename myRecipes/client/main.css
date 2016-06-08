@@ -3,11 +3,11 @@ body {
 	background-color: #F5F5F5;
 }
 
-.content {
+/*.content {
 	max-width: 1140px;
 	margin: 0 auto;
 }
-
+*/
 .recipes h1 {
 	text-align: center;
 	text-transform: uppercase;
@@ -27,7 +27,6 @@ body {
 .card-view-recipe {
 	width: auto;
 	height: auto;
-	margin: 10px auto;
 }
 
 .cardTitle-view-recipe {
@@ -42,4 +41,12 @@ body {
 
 .cardTitle-des {
 	color: #e5e5e5;
+}
+
+#login-buttons a {
+	text-decoration: none;
+}
+
+.login-link-text {
+	color: #fff;
 }
