@@ -19,7 +19,7 @@ class Menu extends React.Component {
   render() {
     return (
       <div>
-        <h2 style={{marginLeft: '16px'}} >Menu List</h2>  
+        <h1>Menu List</h1>  
     		<Grid>    
     			{this.renderList()}
     		</Grid>

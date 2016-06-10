@@ -28,7 +28,7 @@ class ShoppingList extends React.Component {
   render() {
     return (
     	<div style={{width: '60%', margin: 'auto'}}>
-    		<h2>Shopping List</h2>
+    		<h1>Shopping List</h1>
 	      <List>
 				  {this.renderList()}
 				</List>

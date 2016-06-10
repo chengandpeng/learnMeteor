@@ -32,7 +32,7 @@ export default class RecipeView extends React.Component {
   render() {
     return (
     	<div>
-		    <Card shadow={2} className="card-view-recipe">
+		    <Card shadow={2} className="card-view-recipe animated fadeIn">
 			    <CardTitle expand className={this.props.recipe.inMenu?'cardTitle-view-recipe-selected':'cardTitle-view-recipe'}>
 			    	<div>
 				    	<h4>{this.props.recipe.name}</h4>

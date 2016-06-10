@@ -13,7 +13,7 @@ export default class MenuView extends React.Component {
 
   render() {
     return (
-      <Card shadow={2} className='card-view-recipe'>
+      <Card shadow={2} className='card-view-recipe animated fadeIn'>
 		    <CardTitle expand className='cardTitle-view-recipe-selected'>
 		    	<div>
 			    	<h4>{this.props.recipe.name}</h4>
