@@ -29,7 +29,7 @@ class ShoppingList extends React.Component {
     return (
     	<div style={{width: '60%', margin: 'auto'}}>
     		<h1>Shopping List</h1>
-	      <List>
+	      <List className='animated fadeInDown'>
 				  {this.renderList()}
 				</List>
 			</div>

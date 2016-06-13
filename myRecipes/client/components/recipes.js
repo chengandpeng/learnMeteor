@@ -1,7 +1,9 @@
 import React from 'react';
+import { createContainer } from 'meteor/react-meteor-data';
+
 import RecipeForm from './recipe-form';
 import RecipeList from './recipe-list';
-import { createContainer } from 'meteor/react-meteor-data';
+import Welcome from './welcome';
 
 class Recipes extends React.Component {
   constructor(props) {
@@ -19,9 +21,7 @@ class Recipes extends React.Component {
       );
     } else {
       return (
-        <div>
-          test
-        </div>
+        <Welcome />
       );
     }
   }
