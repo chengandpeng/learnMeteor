@@ -9,7 +9,7 @@ export default class Welcome extends React.Component {
     return (
       <div>
       	<ul className='welcome-ul'>
-      		<li className='animated bounceInLeft'>
+      		<li className='animated bounceInLeft animate1'>
       			<div>1</div>
       			<p>Sign In or Sign Up To Start Using <strong>MyRecipe</strong></p>
       		</li>
